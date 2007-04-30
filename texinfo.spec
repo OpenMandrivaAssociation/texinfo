@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.8
-%define release	%mkrel 5
+%define release	%mkrel 6
 
 Name:		%{name}
 Version:	%{version}
@@ -53,6 +53,8 @@ source of information about the software on your system.
 Summary: Program to update the GNU texinfo documentation main page
 Group: System/Base
 Requires: bzip2
+# explicit file provides
+Provides: /sbin/install-info
 
 %description -n info-install
 The GNU project uses the texinfo file format for much of its
