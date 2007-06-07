@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.8
-%define release	%mkrel 6
+%define release	%mkrel 7
 
 Name:		%{name}
 Version:	%{version}
@@ -8,19 +8,20 @@ Release:	%{release}
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPL
 Group:		Publishing
-URL:		http://www.texinfo.org
-Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%name-%version.tar.bz2
+URL:		http://www.texinfo.org/
+Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.bz2
 Source1:	info-dir
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.7.test.patch
 Patch3:		texinfo-4.8-CVE-2006-4810.patch
+Patch4:		texinfo-4.8-lzma-support.patch
 Patch107:	texinfo-4.7-vikeys-segfault-fix.patch
 Requires:	tetex
 BuildRequires:	ncurses-devel
 BuildRequires:	zlib-devel
-Buildroot:	%_tmppath/%name-%version-root
-Requires(pre): info-install
-Requires(preun): info-install
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Requires(pre):	info-install
+Requires(preun):info-install
 
 %description
 Texinfo is a documentation system that can produce both online information
@@ -35,13 +36,13 @@ Install texinfo if you want a documentation system for producing both
 online and print documentation from the same source file and/or if you are
 going to write documentation for the GNU Project.
 
-%package -n info
-Summary: A stand-alone TTY-based reader for GNU texinfo documentation
-Group: System/Base
-Requires(pre): info-install
-Requires(preun): info-install
+%package -n	info
+Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
+Group:		System/Base
+Requires(pre):	info-install
+Requires(preun):info-install
 
-%description -n info
+%description -n	info
 The GNU project uses the texinfo file format for much of its
 documentation. The info package provides a standalone TTY-based browser
 program for viewing texinfo files.
@@ -49,14 +50,14 @@ program for viewing texinfo files.
 You should install info, because GNU's texinfo documentation is a valuable
 source of information about the software on your system.
 
-%package -n info-install
-Summary: Program to update the GNU texinfo documentation main page
-Group: System/Base
-Requires: bzip2
+%package -n	info-install
+Summary:	 Program to update the GNU texinfo documentation main page
+Group:		System/Base
+Requires:	bzip2
 # explicit file provides
-Provides: /sbin/install-info
+Provides:	/sbin/install-info
 
-%description -n info-install
+%description -n	info-install
 The GNU project uses the texinfo file format for much of its
 documentation. The info package provides a standalone TTY-based browser
 program for viewing texinfo files.
@@ -66,38 +67,39 @@ program for viewing texinfo files.
 %patch1 -p1
 %patch2
 %patch3 -p1 -b .secfix
+%patch4 -p1 -b .lzma
 %patch107 -p1
 
 %build
 %configure2_5x
 %make 
 rm -f util/install-info
-make -C util LIBS=%{_libdir}/libz.a
+%make -C util LIBS=%{_libdir}/libz.a
+
+%check
 # all tests must pass
 make check
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/{etc,sbin}
+rm -rf %{buildroot}rm -rf $RPM_BUILD_ROOT
 
 %makeinstall
-pushd $RPM_BUILD_ROOT
-  install -m 644 %SOURCE1 .%_sysconfdir/info-dir
-  ln -sf ../../../etc/info-dir $RPM_BUILD_ROOT%_infodir/dir
-  mv -f .%_bindir/install-info ./sbin
-  mkdir -p .%_sysconfdir/X11/wmconfig
-popd
+install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/info-dir
+ln -s ../../..%{_sysconfdir}/info-dir %{buildroot}%{_infodir}/dir
+mkdir -p %{buildroot}/sbin
+mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin/install-info
+mkdir -p %{buildroot}%{_sysconfdir}/X11/wmconfig
 
-%{find_lang} %name
+%{find_lang} %{name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %post
-%_install_info %name
+%_install_info %{name}
 
 %preun
-%_remove_install_info %name
+%_remove_install_info %{name}
 
 %post -n info
 %_install_info info.info
@@ -105,36 +107,35 @@ rm -rf $RPM_BUILD_ROOT
 %preun -n info
 %_remove_install_info info.info
 
-%files -f %name.lang
+%files -f %{name}.lang
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog INSTALL INTRODUCTION NEWS README TODO
 %doc --parents info/README
-%_bindir/makeinfo
-%_bindir/texindex
-%_bindir/texi2dvi
-%_bindir/texi2pdf
-%_infodir/info-stnd.info*
-%_infodir/texinfo*
-%_mandir/man1/makeinfo.1*
-%_mandir/man1/texindex.1*
-%_mandir/man1/texi2dvi.1*                         
-%_mandir/man5/texinfo.5*   
-%_datadir/texinfo
+%{_bindir}/makeinfo
+%{_bindir}/texindex
+%{_bindir}/texi2dvi
+%{_bindir}/texi2pdf
+%{_infodir}/info-stnd.info*
+%{_infodir}/texinfo*
+%{_mandir}/man1/makeinfo.1*
+%{_mandir}/man1/texindex.1*
+%{_mandir}/man1/texi2dvi.1*                         
+%{_mandir}/man5/texinfo.5*   
+%{_datadir}/texinfo
 
 %files -n info
 %defattr(-,root,root)
-%_bindir/info
-%_infodir/info.info*
-%_bindir/infokey
+%{_bindir}/info
+%{_infodir}/info.info*
+%{_bindir}/infokey
 
 %files -n info-install
 %defattr(-,root,root)
-%config(noreplace) %attr(644,root,root) %_sysconfdir/info-dir
-%_infodir/dir
+%config(noreplace) %attr(644,root,root) %{_sysconfdir}/info-dir
+%{_infodir}/dir
 /sbin/install-info
-%_mandir/man1/info.1*
-%_mandir/man1/infokey.1*
-%_mandir/man1/install-info.1*
-%_mandir/man5/info.5*
-
+%{_mandir}/man1/info.1*
+%{_mandir}/man1/infokey.1*
+%{_mandir}/man1/install-info.1*
+%{_mandir}/man5/info.5*
 
