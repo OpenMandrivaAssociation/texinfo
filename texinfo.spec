@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.8
-%define release	%mkrel 7
+%define release	%mkrel 8
 
 Name:		%{name}
 Version:	%{version}
@@ -51,7 +51,7 @@ You should install info, because GNU's texinfo documentation is a valuable
 source of information about the software on your system.
 
 %package -n	info-install
-Summary:	 Program to update the GNU texinfo documentation main page
+Summary:	Program to update the GNU texinfo documentation main page
 Group:		System/Base
 Requires:	bzip2
 # explicit file provides
