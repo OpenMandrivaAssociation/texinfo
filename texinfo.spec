@@ -67,7 +67,7 @@ program for viewing texinfo files.
 %patch1 -p1
 %patch2
 %patch3 -p1 -b .secfix
-%patch4 -p1 -b .lzma
+#%patch4 -p1 -b .lzma
 %patch107 -p1
 
 %build
