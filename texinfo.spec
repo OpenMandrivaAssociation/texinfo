@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.8
-%define release	%mkrel 9
+%define release	%mkrel 10
 
 Name:		%{name}
 Version:	%{version}
@@ -53,7 +53,7 @@ source of information about the software on your system.
 %package -n	info-install
 Summary:	Program to update the GNU texinfo documentation main page
 Group:		System/Base
-Requires:	bzip2
+Requires:	bzip2 lzma
 # explicit file provides
 Provides:	/sbin/install-info
 
