@@ -1,6 +1,6 @@
 %define name	texinfo
-%define version	4.8
-%define release	%mkrel 10
+%define version	4.9
+%define release	%mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -138,4 +138,3 @@ rm -rf %{buildroot}
 %{_mandir}/man1/infokey.1*
 %{_mandir}/man1/install-info.1*
 %{_mandir}/man5/info.5*
-
