@@ -71,7 +71,9 @@ program for viewing texinfo files.
 %patch107 -p1
 
 %build
-%configure2_5x
+%configure2_5x \
+	--disable-rpath
+
 %make 
 rm -f util/install-info
 %make -C util LIBS=%{_libdir}/libz.a
@@ -83,14 +85,14 @@ make check
 %install
 rm -rf %{buildroot}
 
-%makeinstall
+%makeinstall_std
 install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/info-dir
 ln -s ../../..%{_sysconfdir}/info-dir %{buildroot}%{_infodir}/dir
 mkdir -p %{buildroot}/sbin
 mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin/install-info
 mkdir -p %{buildroot}%{_sysconfdir}/X11/wmconfig
 
-%{find_lang} %{name}
+%find_lang %{name}
 
 %clean
 rm -rf %{buildroot}
