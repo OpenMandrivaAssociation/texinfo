@@ -1,5 +1,5 @@
 %define name	texinfo
-%define version	4.9
+%define version	4.11
 %define release	%mkrel 1
 
 Name:		%{name}
@@ -9,12 +9,12 @@ Summary:	Tools needed to create Texinfo format documentation files
 License:	GPL
 Group:		Publishing
 URL:		http://www.texinfo.org/
-Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.gz
 Source1:	info-dir
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.7.test.patch
-Patch3:		texinfo-4.8-CVE-2006-4810.patch
 Patch4:		texinfo-4.8-lzma-support.patch
+Patch5:		texinfo-4.11-texi2dvi-test.patch
 Patch107:	texinfo-4.7-vikeys-segfault-fix.patch
 Requires:	tetex
 BuildRequires:	ncurses-devel
@@ -66,8 +66,8 @@ program for viewing texinfo files.
 %setup -q
 %patch1 -p1
 %patch2
-%patch3 -p1 -b .secfix
 %patch4 -p1 -b .lzma
+%patch5 -p1 -b .test
 %patch107 -p1
 
 %build
@@ -117,6 +117,7 @@ rm -rf %{buildroot}
 %{_bindir}/texindex
 %{_bindir}/texi2dvi
 %{_bindir}/texi2pdf
+%{_bindir}/pdftexi2dvi
 %{_infodir}/info-stnd.info*
 %{_infodir}/texinfo*
 %{_mandir}/man1/makeinfo.1*
