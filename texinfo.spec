@@ -19,7 +19,6 @@ Patch107:	texinfo-4.7-vikeys-segfault-fix.patch
 Requires:	tetex
 BuildRequires:	ncurses-devel
 BuildRequires:	zlib-devel
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires(pre):	info-install
 Requires(preun):info-install
 
