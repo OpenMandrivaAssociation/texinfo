@@ -17,6 +17,8 @@ Patch4:		texinfo-4.8-lzma-support.patch
 Patch5:		texinfo-4.11-texi2dvi-test.patch
 Patch107:	texinfo-4.7-vikeys-segfault-fix.patch
 Requires:	texmf-data
+# (anssi 01/2008) for make check:
+BuildRequires:	tetex
 BuildRequires:	ncurses-devel
 BuildRequires:	zlib-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
