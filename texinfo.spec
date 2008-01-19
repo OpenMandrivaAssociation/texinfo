@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.11
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 Name:		%{name}
 Version:	%{version}
@@ -16,7 +16,7 @@ Patch2:		texinfo-4.7.test.patch
 Patch4:		texinfo-4.8-lzma-support.patch
 Patch5:		texinfo-4.11-texi2dvi-test.patch
 Patch107:	texinfo-4.7-vikeys-segfault-fix.patch
-Requires:	tetex
+Requires:	texmf-data
 BuildRequires:	ncurses-devel
 BuildRequires:	zlib-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
