@@ -1,6 +1,6 @@
 %define name	texinfo
-%define version	4.11
-%define release	%mkrel 3
+%define version	4.12
+%define release	%mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -9,7 +9,7 @@ Summary:	Tools needed to create Texinfo format documentation files
 License:	GPL
 Group:		Publishing
 URL:		http://www.texinfo.org/
-Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
 Source1:	info-dir
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.7.test.patch
