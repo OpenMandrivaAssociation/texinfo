@@ -13,8 +13,6 @@ Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
 Source1:	info-dir
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.7.test.patch
-Patch4:		texinfo-4.8-lzma-support.patch
-Patch5:		texinfo-4.11-texi2dvi-test.patch
 Patch107:	texinfo-4.7-vikeys-segfault-fix.patch
 Requires:	texmf-data
 # (anssi 01/2008) for make check:
@@ -70,8 +68,7 @@ program for viewing texinfo files.
 %setup -q
 %patch1 -p1
 %patch2
-%patch4 -p1 -b .lzma
-%patch5 -p1 -b .test
+#%patch5 -p1 -b .test
 %patch107 -p1
 
 %build
