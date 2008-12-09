@@ -1,5 +1,5 @@
 %define name	texinfo
-%define version	4.12
+%define version	4.13
 %define release	%mkrel 1
 
 Name:		%{name}
@@ -13,17 +13,16 @@ Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
 Source1:	info-dir
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.7.test.patch
-Patch107:	texinfo-4.7-vikeys-segfault-fix.patch
+Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
 Requires:	texmf-data
 # (anssi 01/2008) for make check:
 BuildRequires:	tetex
 BuildRequires:	tetex-latex
-
 BuildRequires:	ncurses-devel
 BuildRequires:	zlib-devel
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires(pre):	info-install
-Requires(preun):info-install
+Requires(preun):	info-install
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Texinfo is a documentation system that can produce both online information
@@ -38,11 +37,11 @@ Install texinfo if you want a documentation system for producing both
 online and print documentation from the same source file and/or if you are
 going to write documentation for the GNU Project.
 
-%package -n	info
+%package -n info
 Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
 Group:		System/Base
 Requires(pre):	info-install
-Requires(preun):info-install
+Requires(preun):	info-install
 
 %description -n	info
 The GNU project uses the texinfo file format for much of its
@@ -52,10 +51,11 @@ program for viewing texinfo files.
 You should install info, because GNU's texinfo documentation is a valuable
 source of information about the software on your system.
 
-%package -n	info-install
+%package -n info-install
 Summary:	Program to update the GNU texinfo documentation main page
 Group:		System/Base
-Requires:	bzip2 lzma
+Requires:	bzip2
+Requires:	lzma
 # explicit file provides
 Provides:	/sbin/install-info
 
