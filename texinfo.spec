@@ -55,7 +55,6 @@ source of information about the software on your system.
 %package -n info-install
 Summary:	Program to update the GNU texinfo documentation main page
 Group:		System/Base
-Requires:	bzip2
 Requires:	lzma
 # explicit file provides
 Provides:	/sbin/install-info
