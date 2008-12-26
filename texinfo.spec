@@ -113,7 +113,7 @@ rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS INSTALL INTRODUCTION NEWS README TODO
+%doc AUTHORS INTRODUCTION NEWS README TODO
 %doc --parents info/README
 %{_bindir}/makeinfo
 %{_bindir}/texindex
