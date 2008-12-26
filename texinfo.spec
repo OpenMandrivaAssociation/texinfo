@@ -123,9 +123,9 @@ rm -rf %{buildroot}
 %{_infodir}/info-stnd.info*
 %{_infodir}/texinfo*
 %{_mandir}/man1/makeinfo.1*
-%{_mandir}/man1/pdftexi2dvi.1.lzma
+%{_mandir}/man1/pdftexi2dvi.1*
 %{_mandir}/man1/texi2dvi.1*                         
-%{_mandir}/man1/texi2pdf.1.lzma
+%{_mandir}/man1/texi2pdf.1*
 %{_mandir}/man1/texindex.1*
 %{_mandir}/man5/texinfo.5*   
 %{_datadir}/texinfo
