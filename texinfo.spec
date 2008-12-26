@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.13
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 Name:		%{name}
 Version:	%{version}
@@ -14,6 +14,7 @@ Source1:	info-dir
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-test.patch
 Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
+Patch108:	texinfo-4.13-xz.patch
 Requires:	texmf-data
 # (anssi 01/2008) for make check:
 BuildRequires:	tetex
@@ -70,6 +71,7 @@ program for viewing texinfo files.
 %patch2 -p1 -b .test~
 #%%patch5 -p1 -b .test
 %patch107 -p1
+%patch108 -p1 -b .xz~
 
 %build
 %configure2_5x \
