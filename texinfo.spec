@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.13
-%define release	%mkrel 2
+%define release	%mkrel 3
 
 Name:		%{name}
 Version:	%{version}
@@ -15,6 +15,8 @@ Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-test.patch
 Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
 Patch108:	texinfo-4.13-xz.patch
+# backported from cvs
+Patch109:	texinfo-4.13-use-size_t-for-len.patch
 Requires:	texmf-data
 # (anssi 01/2008) for make check:
 BuildRequires:	tetex
@@ -71,6 +73,7 @@ program for viewing texinfo files.
 #%%patch5 -p1 -b .test
 %patch107 -p1
 %patch108 -p1 -b .xz~
+%patch109 -p1 -b .size_t~
 
 %build
 %configure2_5x \
