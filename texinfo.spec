@@ -17,6 +17,8 @@ Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
 Patch108:	texinfo-4.13-xz.patch
 # backported from cvs
 Patch109:	texinfo-4.13-use-size_t-for-len.patch
+# Local fixes submitted upstream
+Patch200:	texinfo-4.13-mb_modeline.patch
 Requires:	texmf-data
 # (anssi 01/2008) for make check:
 BuildRequires:	tetex
@@ -74,6 +76,7 @@ program for viewing texinfo files.
 %patch107 -p1
 %patch108 -p1 -b .xz~
 %patch109 -p1 -b .size_t~
+%patch200 -p1 -b .mb_modeline
 
 %build
 %configure2_5x \
