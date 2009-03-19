@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.13
-%define release	%mkrel 3
+%define release	%mkrel 4
 
 Name:		%{name}
 Version:	%{version}
