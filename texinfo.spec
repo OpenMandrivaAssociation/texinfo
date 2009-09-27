@@ -1,6 +1,10 @@
 %define name	texinfo
 %define version	4.13
-%define release	%mkrel 5
+%define release	%mkrel 6
+
+%define bootstrap 0
+%{?_without_bootstrap: %global bootstrap 0}
+%{?_with_bootstrap: %global bootstrap 1}
 
 Name:		%{name}
 Version:	%{version}
@@ -19,10 +23,12 @@ Patch108:	texinfo-4.13-xz.patch
 Patch109:	texinfo-4.13-use-size_t-for-len.patch
 # Local fixes submitted upstream
 Patch200:	texinfo-4.13-mb_modeline.patch
-Requires:	texmf-data
 # (anssi 01/2008) for make check:
+%if %bootstrap == 0
+Requires:	texmf-data
 BuildRequires:	tetex
 BuildRequires:	tetex-latex
+%endif
 BuildRequires:	ncurses-devel
 BuildRequires:	zlib-devel
 Requires(pre):	info-install
