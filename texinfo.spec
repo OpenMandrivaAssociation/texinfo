@@ -32,6 +32,7 @@ BuildRequires:	tetex-latex
 %endif
 BuildRequires:	ncurses-devel
 BuildRequires:	zlib-devel
+BuildRequires:	help2man
 Requires(pre):	info-install
 Requires(preun):	info-install
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
