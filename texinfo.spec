@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.13
-%define release	%mkrel 6
+%define release	%mkrel 7
 
 %define bootstrap 0
 %{?_without_bootstrap: %global bootstrap 0}
@@ -17,6 +17,7 @@ Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
 Source1:	info-dir
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-test.patch
+Patch3:		texinfo-4.13-fix-crash-used-parallel.patch
 Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
 Patch108:	texinfo-4.13-xz.patch
 # backported from cvs
@@ -78,7 +79,7 @@ program for viewing texinfo files.
 %setup -q
 %patch1 -p1
 %patch2 -p1 -b .test~
-#%%patch5 -p1 -b .test
+%patch3 -p1 -b .parallel~
 %patch107 -p1
 %patch108 -p1 -b .xz~
 %patch109 -p1 -b .size_t~
