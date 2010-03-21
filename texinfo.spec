@@ -1,6 +1,6 @@
 %define name	texinfo
-%define version	4.13
-%define release	%mkrel 7
+%define version	4.13a
+%define release	%mkrel 1
 
 %define bootstrap 0
 %{?_without_bootstrap: %global bootstrap 0}
@@ -77,7 +77,7 @@ documentation. The info package provides a standalone TTY-based browser
 program for viewing texinfo files.
 
 %prep
-%setup -q
+%setup -qn %name-4.13
 %patch1 -p1
 %patch2 -p1 -b .test~
 %patch3 -p1 -b .parallel~
