@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.13a
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define bootstrap 0
 %{?_without_bootstrap: %global bootstrap 0}
