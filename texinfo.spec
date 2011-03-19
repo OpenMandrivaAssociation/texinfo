@@ -1,6 +1,6 @@
 %define name	texinfo
 %define version	4.13a
-%define release	%mkrel 2
+%define release	%mkrel 3
 
 %define bootstrap 0
 %{?_without_bootstrap: %global bootstrap 0}
@@ -26,9 +26,8 @@ Patch109:	texinfo-4.13-use-size_t-for-len.patch
 Patch200:	texinfo-4.13-mb_modeline.patch
 # (anssi 01/2008) for make check:
 %if %bootstrap == 0
-Requires:	texmf-data
-BuildRequires:	tetex
-BuildRequires:	tetex-latex
+Requires:	texlive
+BuildRequires:	texlive
 %endif
 BuildRequires:	ncurses-devel
 BuildRequires:	zlib-devel
