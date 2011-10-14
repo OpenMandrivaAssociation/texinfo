@@ -102,6 +102,7 @@ rm -rf %{buildroot}
 
 %makeinstall_std
 install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/info-dir
+rm -f %{buildroot}%{_infodir}/dir
 ln -s ../../..%{_sysconfdir}/info-dir %{buildroot}%{_infodir}/dir
 mkdir -p %{buildroot}/sbin
 mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin/install-info
