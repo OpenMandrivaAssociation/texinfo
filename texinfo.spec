@@ -1,14 +1,8 @@
-%define name	texinfo
-%define version	4.13a
-%define release	%mkrel 4
-
 %define bootstrap 0
-%{?_without_bootstrap: %global bootstrap 0}
-%{?_with_bootstrap: %global bootstrap 1}
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		texinfo
+Version:	4.13a
+Release:	5
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPL
 Group:		Publishing
@@ -34,7 +28,6 @@ BuildRequires:	zlib-devel
 BuildRequires:	help2man
 Requires(pre):	info-install
 Requires(preun):	info-install
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Texinfo is a documentation system that can produce both online information
@@ -77,13 +70,7 @@ program for viewing texinfo files.
 
 %prep
 %setup -qn %name-4.13
-%patch1 -p1
-%patch2 -p1 -b .test~
-%patch3 -p1 -b .parallel~
-%patch107 -p1
-%patch108 -p1 -b .xz~
-%patch109 -p1 -b .size_t~
-%patch200 -p1 -b .mb_modeline
+%apply_patches
 
 %build
 %configure2_5x \
@@ -110,20 +97,32 @@ mkdir -p %{buildroot}%{_sysconfdir}/X11/wmconfig
 
 %find_lang %{name}
 
-%clean
-rm -rf %{buildroot}
-
 %post
-%_install_info %{name}
+if [ -f %{_infodir}/texinfo.xz ]; then # --excludedocs?
+%_install_info %{name} || :
+fi
 
 %preun
-%_remove_install_info %{name}
+if [ $1 = 0 ]; then
+	if [ -f %{_infodir}/texinfo.xz ]; then # --excludedocs?
+%_remove_install_info %{name} || :
+	fi
+fi
 
 %post -n info
+if [ -f %{_infodir}/info-stnd.info ]; then # --excludedocs?
 %_install_info info.info
+fi
+if [ -x /bin/sed ]; then
+/bin/sed -i '/^This is.*produced by makeinfo.*from/d' %{_infodir}/dir || :
+fi
 
 %preun -n info
-%_remove_install_info info.info
+if [ $1 = 0 ]; then
+	if [ -f %{_infodir}/info-stnd.info ]; then # --excludedocs?
+%_remove_install_info info.info || :
+	fi
+fi
 
 %files -f %{name}.lang
 %defattr(-,root,root)
