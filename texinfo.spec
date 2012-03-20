@@ -120,7 +120,6 @@ fi
 
 %files -f %{name}.lang
 %doc AUTHORS INTRODUCTION NEWS README TODO
-%doc --parents info/README
 %{_bindir}/makeinfo
 %{_bindir}/texindex
 %{_bindir}/texi2dvi
@@ -137,6 +136,7 @@ fi
 %{_datadir}/texinfo
 
 %files -n info
+info/README
 %{_bindir}/info
 %{_infodir}/info.info*
 %{_bindir}/infokey
