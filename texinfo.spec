@@ -136,7 +136,7 @@ fi
 %{_datadir}/texinfo
 
 %files -n info
-info/README
+%doc info/README
 %{_bindir}/info
 %{_infodir}/info.info*
 %{_bindir}/infokey
