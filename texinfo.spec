@@ -9,6 +9,7 @@ Group:		Publishing
 URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
 Source1:	info-dir
+Source2:	%{name}.rpmlintrc
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-test.patch
 Patch3:		texinfo-4.13-fix-crash-used-parallel.patch
