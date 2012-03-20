@@ -119,6 +119,11 @@ if [ $1 = 0 ]; then
 	fi
 fi
 
+%pre -n info-install
+if [ -f %{_sysconfdir}/info-dir -a -L %{_infodir}/dir ]; then
+    mv %{_sysconfdir}/info-dir %{_infodir}/dir 
+fi
+
 %files -f %{name}.lang
 %doc AUTHORS INTRODUCTION NEWS README TODO
 %{_bindir}/makeinfo
