@@ -146,7 +146,7 @@ fi
 
 %files -n info-install
 %config(noreplace) %attr(644,root,root) %{_sysconfdir}/info-dir
-%{_infodir}/dir
+%config(noreplace) %verify(not digest size mtime) %{_infodir}/dir
 /sbin/install-info
 %{_mandir}/man1/info.1*
 %{_mandir}/man1/infokey.1*
