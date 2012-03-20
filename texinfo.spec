@@ -4,7 +4,7 @@ Name:		texinfo
 Version:	4.13a
 Release:	6
 Summary:	Tools needed to create Texinfo format documentation files
-License:	GPL
+License:	GPLv3+
 Group:		Publishing
 URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
