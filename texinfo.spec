@@ -26,8 +26,6 @@ BuildRequires:	texlive-collection-texinfo
 %endif
 BuildRequires:	ncurses-devel
 BuildRequires:	help2man
-Requires(pre):	info-install
-Requires(preun):info-install
 
 %description
 Texinfo is a documentation system that can produce both online information
@@ -45,8 +43,6 @@ going to write documentation for the GNU Project.
 %package -n	info
 Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
 Group:		System/Base
-Requires(pre):	info-install
-Requires(preun):info-install
 
 %description -n	info
 The GNU project uses the texinfo file format for much of its
@@ -92,36 +88,29 @@ mkdir -p %{buildroot}%{_sysconfdir}/X11/wmconfig
 
 %find_lang %{name}
 
-%post
-if [ -f %{_infodir}/texinfo.xz ]; then # --excludedocs?
-%_install_info %{name} || :
-fi
-
-%preun
-if [ $1 = 0 ]; then
-	if [ -f %{_infodir}/texinfo.xz ]; then # --excludedocs?
-%_remove_install_info %{name} || :
-	fi
-fi
-
-%post -n info
-if [ -f %{_infodir}/info-stnd.info ]; then # --excludedocs?
-%_install_info info.info
-fi
-if [ -x /bin/sed ]; then
-/bin/sed -i '/^This is.*produced by makeinfo.*from/d' %{_infodir}/dir || :
-fi
-
-%preun -n info
-if [ $1 = 0 ]; then
-	if [ -f %{_infodir}/info-stnd.info ]; then # --excludedocs?
-%_remove_install_info info.info || :
-	fi
-fi
-
 %pre -n info-install
 if [ -f %{_sysconfdir}/info-dir -a -L %{_infodir}/dir ]; then
     mv %{_sysconfdir}/info-dir %{_infodir}/dir 
+fi
+
+%triggerin -n info-install -- %{_infodir}/*.info*
+if [ $1 -eq 0 -o $2 -eq 0 ]; then
+    while [ -n "$3" ]; do
+	if [ -f "$3" ]; then
+	    %__install_info $3 --dir=%{_infodir}/dir
+	fi
+	shift
+    done
+fi
+
+%triggerun -n info-install -- %{_infodir}/*.info*
+if [ $2 -eq 0 ]; then
+    while [ -n "$3" ]; do
+	if [ -f "$3" ]; then
+	    %__install_info $3 --dir=%{_infodir}/dir --remove
+	fi
+	shift
+    done
 fi
 
 %files -f %{name}.lang
