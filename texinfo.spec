@@ -84,7 +84,6 @@ make check
 install -m644 %{SOURCE1} -D %{buildroot}%{_infodir}/dir
 mkdir -p %{buildroot}/sbin
 mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin/install-info
-mkdir -p %{buildroot}%{_sysconfdir}/X11/wmconfig
 
 %find_lang %{name}
 
