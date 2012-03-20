@@ -8,7 +8,6 @@ License:	GPLv3+
 Group:		Publishing
 URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
-Source1:	info-dir
 Source2:	%{name}.rpmlintrc
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-test.patch
@@ -81,7 +80,7 @@ make check
 
 %install
 %makeinstall_std
-install -m644 %{SOURCE1} -D %{buildroot}%{_infodir}/dir
+touch %{buildroot}%{_infodir}/dir
 mkdir -p %{buildroot}/sbin
 mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin/install-info
 
@@ -136,7 +135,7 @@ fi
 %{_bindir}/infokey
 
 %files -n info-install
-%config(noreplace) %verify(not digest size mtime) %{_infodir}/dir
+%ghost %{_infodir}/dir
 /sbin/install-info
 %{_mandir}/man1/info.1*
 %{_mandir}/man1/infokey.1*
