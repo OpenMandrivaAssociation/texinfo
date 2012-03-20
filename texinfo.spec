@@ -1,8 +1,8 @@
-%define bootstrap 0
+%bcond_with	bootstrap
 
 Name:		texinfo
 Version:	4.13a
-Release:	5
+Release:	6
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPL
 Group:		Publishing
@@ -19,7 +19,7 @@ Patch109:	texinfo-4.13-use-size_t-for-len.patch
 # Local fixes submitted upstream
 Patch200:	texinfo-4.13-mb_modeline.patch
 # (anssi 01/2008) for make check:
-%if %bootstrap == 0
+%if !%{with bootstrap}
 Requires:	texlive-collection-texinfo
 BuildRequires:	texlive-collection-texinfo
 %endif
@@ -27,7 +27,7 @@ BuildRequires:	ncurses-devel
 BuildRequires:	zlib-devel
 BuildRequires:	help2man
 Requires(pre):	info-install
-Requires(preun):	info-install
+Requires(preun):info-install
 
 %description
 Texinfo is a documentation system that can produce both online information
@@ -42,11 +42,11 @@ Install texinfo if you want a documentation system for producing both
 online and print documentation from the same source file and/or if you are
 going to write documentation for the GNU Project.
 
-%package -n info
+%package -n	info
 Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
 Group:		System/Base
 Requires(pre):	info-install
-Requires(preun):	info-install
+Requires(preun):info-install
 
 %description -n	info
 The GNU project uses the texinfo file format for much of its
@@ -56,7 +56,7 @@ program for viewing texinfo files.
 You should install info, because GNU's texinfo documentation is a valuable
 source of information about the software on your system.
 
-%package -n info-install
+%package -n	info-install
 Summary:	Program to update the GNU texinfo documentation main page
 Group:		System/Base
 Requires:	xz
@@ -69,12 +69,11 @@ documentation. The info package provides a standalone TTY-based browser
 program for viewing texinfo files.
 
 %prep
-%setup -qn %name-4.13
+%setup -qn %{name}-4.13
 %apply_patches
 
 %build
-%configure2_5x \
-	--disable-rpath
+%configure2_5x	--disable-rpath
 
 %make 
 rm -f util/install-info
@@ -85,8 +84,6 @@ rm -f util/install-info
 make check
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/info-dir
 rm -f %{buildroot}%{_infodir}/dir
@@ -125,7 +122,6 @@ if [ $1 = 0 ]; then
 fi
 
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc AUTHORS INTRODUCTION NEWS README TODO
 %doc --parents info/README
 %{_bindir}/makeinfo
@@ -144,13 +140,11 @@ fi
 %{_datadir}/texinfo
 
 %files -n info
-%defattr(-,root,root)
 %{_bindir}/info
 %{_infodir}/info.info*
 %{_bindir}/infokey
 
 %files -n info-install
-%defattr(-,root,root)
 %config(noreplace) %attr(644,root,root) %{_sysconfdir}/info-dir
 %{_infodir}/dir
 /sbin/install-info
