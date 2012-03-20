@@ -23,7 +23,6 @@ Requires:	texlive-collection-texinfo
 BuildRequires:	texlive-collection-texinfo
 %endif
 BuildRequires:	ncurses-devel
-BuildRequires:	zlib-devel
 BuildRequires:	help2man
 Requires(pre):	info-install
 Requires(preun):info-install
@@ -76,7 +75,7 @@ program for viewing texinfo files.
 
 %make 
 rm -f util/install-info
-%make -C util LIBS=%{_libdir}/libz.a
+%make -C util
 
 %check
 # all tests must pass
