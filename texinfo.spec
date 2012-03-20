@@ -8,6 +8,7 @@ License:	GPLv3+
 Group:		Publishing
 URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
+Source1:	info-dir
 Patch1:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-test.patch
 Patch3:		texinfo-4.13-fix-crash-used-parallel.patch
@@ -83,8 +84,7 @@ make check
 
 %install
 %makeinstall_std
-rm -f %{buildroot}%{_infodir}/dir
-ln -s ../../..%{_sysconfdir}/info-dir %{buildroot}%{_infodir}/dir
+install -m644 %{SOURCE1} -D %{buildroot}%{_infodir}/dir
 mkdir -p %{buildroot}/sbin
 mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin/install-info
 mkdir -p %{buildroot}%{_sysconfdir}/X11/wmconfig
