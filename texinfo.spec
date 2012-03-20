@@ -6,7 +6,7 @@ Release:	6
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPL
 Group:		Publishing
-URL:		http://www.texinfo.org/
+URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
 Source1:	info-dir
 Patch1:		texinfo-3.12h-fix.patch
