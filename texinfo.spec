@@ -69,9 +69,7 @@ program for viewing texinfo files.
 
 %build
 %configure2_5x	--disable-rpath
-
 %make 
-rm -f util/install-info
 %make -C util
 
 %check
