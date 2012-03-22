@@ -81,7 +81,7 @@ if [ -f %{_sysconfdir}/info-dir -a -L %{_infodir}/dir ]; then
     mv %{_sysconfdir}/info-dir %{_infodir}/dir 
 fi
 
-%triggerin -n info -- %{_infodir}/*.info*
+%triggerin -n info -- %{_infodir}/*.info*, %{_infodir}/texinfo.*
 if [ $1 -eq 0 -o $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
@@ -91,7 +91,7 @@ if [ $1 -eq 0 -o $2 -eq 0 ]; then
     done
 fi
 
-%triggerun -n info -- %{_infodir}/*.info*
+%triggerun -n info -- %{_infodir}/*.info*, %{_infodir}/texinfo.*
 if [ $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
