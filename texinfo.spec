@@ -42,6 +42,10 @@ going to write documentation for the GNU Project.
 %package -n	info
 Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
 Group:		System/Base
+Requires:	xz
+# explicit file provides
+Provides:	/sbin/install-info
+%rename		info-install
 
 %description -n	info
 The GNU project uses the texinfo file format for much of its
@@ -50,18 +54,6 @@ program for viewing texinfo files.
 
 You should install info, because GNU's texinfo documentation is a valuable
 source of information about the software on your system.
-
-%package -n	info-install
-Summary:	Program to update the GNU texinfo documentation main page
-Group:		System/Base
-Requires:	xz
-# explicit file provides
-Provides:	/sbin/install-info
-
-%description -n	info-install
-The GNU project uses the texinfo file format for much of its
-documentation. The info package provides a standalone TTY-based browser
-program for viewing texinfo files.
 
 %prep
 %setup -qn %{name}-4.13
@@ -84,12 +76,12 @@ mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin/install-info
 
 %find_lang %{name}
 
-%pre -n info-install
+%pre -n info
 if [ -f %{_sysconfdir}/info-dir -a -L %{_infodir}/dir ]; then
     mv %{_sysconfdir}/info-dir %{_infodir}/dir 
 fi
 
-%triggerin -n info-install -- %{_infodir}/*.info*
+%triggerin -n info -- %{_infodir}/*.info*
 if [ $1 -eq 0 -o $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
@@ -99,7 +91,7 @@ if [ $1 -eq 0 -o $2 -eq 0 ]; then
     done
 fi
 
-%triggerun -n info-install -- %{_infodir}/*.info*
+%triggerun -n info -- %{_infodir}/*.info*
 if [ $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
@@ -128,13 +120,11 @@ fi
 
 %files -n info
 %doc info/README
-%{_bindir}/info
-%{_infodir}/info.info*
-%{_bindir}/infokey
-
-%files -n info-install
-%ghost %{_infodir}/dir
 /sbin/install-info
+%{_bindir}/info
+%{_bindir}/infokey
+%ghost %{_infodir}/dir
+%{_infodir}/info.info*
 %{_mandir}/man1/info.1*
 %{_mandir}/man1/infokey.1*
 %{_mandir}/man1/install-info.1*
