@@ -2,7 +2,7 @@
 
 Name:		texinfo
 Version:	4.13a
-Release:	7
+Release:	8
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -44,8 +44,6 @@ Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
 Group:		System/Base
 Requires:	xz
 Requires(pre):	coreutils
-# explicit file provides
-Provides:	/sbin/install-info
 %rename		info-install
 
 %description -n	info
@@ -72,8 +70,6 @@ make check
 %install
 %makeinstall_std
 touch %{buildroot}%{_infodir}/dir
-mkdir -p %{buildroot}/sbin
-mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin/install-info
 
 %find_lang %{name}
 
@@ -121,7 +117,7 @@ fi
 
 %files -n info
 %doc info/README
-/sbin/install-info
+%{_sbindir}/install-info
 %{_bindir}/info
 %{_bindir}/infokey
 %ghost %{_infodir}/dir
