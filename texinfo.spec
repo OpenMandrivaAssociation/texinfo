@@ -2,7 +2,7 @@
 
 Name:		texinfo
 Version:	4.13a
-Release:	8
+Release:	9
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -42,6 +42,7 @@ going to write documentation for the GNU Project.
 %package -n	info
 Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
 Group:		System/Base
+Requires(pre):	xz
 Requires:	xz
 Requires(pre):	coreutils
 %rename		info-install
