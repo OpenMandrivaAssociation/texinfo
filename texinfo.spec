@@ -70,6 +70,8 @@ make check
 
 %install
 %makeinstall_std
+mkdir -p %{buildroot}%{_sbindir}
+mv %{buildroot}%{_bindir}/info-install %{buildroot}%{_sbindir}
 touch %{buildroot}%{_infodir}/dir
 
 %find_lang %{name}
