@@ -25,6 +25,7 @@ BuildRequires:	texlive-collection-texinfo
 %endif
 BuildRequires:	ncurses-devel
 BuildRequires:	help2man
+BuildRequires:	spec-helper >= 0.31.14
 
 %description
 Texinfo is a documentation system that can produce both online information
