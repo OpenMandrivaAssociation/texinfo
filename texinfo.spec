@@ -2,7 +2,7 @@
 
 Name:		texinfo
 Version:	4.13a
-Release:	8
+Release:	9
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -86,7 +86,7 @@ fi
 if [ $1 -eq 0 -o $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
-	    %__install_info $3 --dir=%{_infodir}/dir
+	    /usr/sbin/install-info $3 --dir=%{_infodir}/dir
 	fi
 	shift
     done
@@ -96,7 +96,7 @@ fi
 if [ $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
-	    %__install_info $3 --dir=%{_infodir}/dir --remove
+	    /usr/sbin/install-info $3 --dir=%{_infodir}/dir --remove
 	fi
 	shift
     done
