@@ -2,7 +2,7 @@
 
 Name:		texinfo
 Version:	4.13a
-Release:	9
+Release:	10
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -71,8 +71,8 @@ make check
 
 %install
 %makeinstall_std
-mkdir -p %{buildroot}%{_sbindir}
-mv %{buildroot}%{_bindir}/install-info %{buildroot}%{_sbindir}
+mkdir -p %{buildroot}/sbin
+mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin
 touch %{buildroot}%{_infodir}/dir
 
 %find_lang %{name}
@@ -86,7 +86,7 @@ fi
 if [ $1 -eq 0 -o $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
-	    /usr/sbin/install-info $3 --dir=%{_infodir}/dir
+	    /sbin/install-info $3 --dir=%{_infodir}/dir
 	fi
 	shift
     done
@@ -96,7 +96,7 @@ fi
 if [ $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
-	    /usr/sbin/install-info $3 --dir=%{_infodir}/dir --remove
+	    /sbin/install-info $3 --dir=%{_infodir}/dir --remove
 	fi
 	shift
     done
@@ -121,7 +121,7 @@ fi
 
 %files -n info
 %doc info/README
-%{_sbindir}/install-info
+/sbin/install-info
 %{_bindir}/info
 %{_bindir}/infokey
 %ghost %{_infodir}/dir
