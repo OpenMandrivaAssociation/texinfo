@@ -1,0 +1,12 @@
+diff -p -up texinfo-4.13/makeinfo/tests/copying.test~ texinfo-4.13/makeinfo/tests/copying
+--- texinfo-4.13/makeinfo/tests/copying.test~	2008-12-26 13:50:13.000000000 +0100
++++ texinfo-4.13/makeinfo/tests/copying	2008-12-26 13:50:35.000000000 +0100
+@@ -7,7 +7,7 @@ unset TEXINFO_OUTPUT LANG LANGUAGE
+ LC_ALL=POSIX; export LC_ALL
+ : ${srcdir=.}
+ 
+-../makeinfo -o copying.out $srcdir/copying.txi || exit 1
++LC_ALL=C ../makeinfo -o copying.out $srcdir/copying.txi || exit 1
+ fgrep 'produced by' copying.out >/dev/null || exit 2
+ 
+ rm -f copying.out

@@ -1,0 +1,71 @@
+--- texinfo-4.13/info/display.c.mb_modeline	2009-03-15 12:43:46.000000000 +0300
++++ texinfo-4.13/info/display.c	2009-03-15 20:12:22.000000000 +0300
+@@ -308,6 +308,9 @@ display_update_one_window (WINDOW *win)
+           terminal_begin_inverse ();
+           terminal_put_text (win->modeline);
+           terminal_end_inverse ();
++	  /* line length can change when using multibyte characters */
++	  display[line_index]->text = xrealloc (display[line_index]->text,
++						1 + strlen (win->modeline));
+           strcpy (display[line_index]->text, win->modeline);
+           display[line_index]->inverse = 1;
+           display[line_index]->textlen = strlen (win->modeline);
+--- texinfo-4.13/info/window.c.mb_modeline	2009-03-15 12:17:35.000000000 +0300
++++ texinfo-4.13/info/window.c	2009-03-15 20:15:46.000000000 +0300
+@@ -1007,6 +1007,8 @@ window_make_modeline (WINDOW *window)
+     char *nodename = "*no node*";
+     const char *update_message = NULL;
+     NODE *node = window->node;
++    mbi_iterator_t iter;
++    int w;
+ 
+     if (node)
+       {
+@@ -1016,7 +1018,9 @@ window_make_modeline (WINDOW *window)
+         if (node->parent)
+           {
+             parent = filename_non_directory (node->parent);
+-            modeline_len += strlen ("Subfile: ") + strlen (node->filename);
++	    /* FIXME: currently message catalog lacks plain "Subfile:"; so
++	     * just allocate a couple if characters more */
++            modeline_len += strlen (_("Subfile: %s")) + strlen (node->filename);
+           }
+ 
+         if (node->filename)
+@@ -1057,17 +1061,28 @@ window_make_modeline (WINDOW *window)
+     if (update_message)
+       sprintf (modeline + strlen (modeline), "%s", update_message);
+ 
+-    i = strlen (modeline);
+-
+-    if (i >= window->width)
+-      modeline[window->width] = '\0';
+-    else
++    /* truncate line on screen width making sure we do not leave
++     * partial multibyte characters */
++    for (mbi_init (iter, modeline, strlen (modeline)), i = 0, w = 0;
++	  mbi_avail (iter); mbi_advance (iter))
+       {
+-        while (i < window->width)
+-          modeline[i++] = '-';
+-        modeline[i] = '\0';
++	size_t cur_len = mb_len (mbi_cur (iter));
++	int cur_width = mb_width (mbi_cur (iter));
++
++	if (w + cur_width > window->width || i + cur_len > modeline_len)
++	  break;
++	else
++	  {
++	    i += cur_len;
++	    w += cur_width;
++	  }
+       }
+ 
++      while (w++ < window->width && i < modeline_len)
++	modeline[i++] = '-';
++      modeline[i] = '\0';
++
++    window->modeline = xrealloc (window->modeline, 1 + strlen (modeline));
+     strcpy (window->modeline, modeline);
+     free (modeline);
+   }

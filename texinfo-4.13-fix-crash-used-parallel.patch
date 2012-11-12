@@ -1,0 +1,21 @@
+diff --git a/util/texi2dvi b/util/texi2dvi
+index 1b41ffe..4e64c4b 100755
+--- a/util/texi2dvi
++++ b/util/texi2dvi
+@@ -195,8 +195,12 @@ ensure_dir ()
+ {
+   for dir
+   do
++    # Beware that in parallel builds we may have several concurrent
++    # attempts to create the directory.  So fail only if "mkdir"
++    # failed *and* the directory still does not exist.
+     test -d "$dir" \
+       || mkdir "$dir" \
++      || test -d "$dir" \
+       || error 1 "cannot create directory: $dir"
+   done
+ }
+-- 
+1.6.5
+
+

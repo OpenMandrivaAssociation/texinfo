@@ -1,0 +1,58 @@
+--- texinfo-4.13/info/window.c.orig~	2009-02-18 15:40:10.325201146 +0100
++++ texinfo-4.13/info/window.c	2009-02-18 15:40:18.031557031 +0100
+@@ -1,5 +1,5 @@
+ /* window.c -- windows in Info.
+-   $Id: window.c,v 1.17 2008/09/13 10:01:31 gray Exp $
++   $Id: window.c,v 1.20 2008/12/29 23:22:20 karl Exp $
+ 
+    Copyright (C) 1993, 1997, 1998, 2001, 2002, 2003, 2004, 2007, 2008
+    Free Software Foundation, Inc.
+@@ -1581,8 +1581,8 @@ process_node_text (WINDOW *win, char *st
+       const char *carried_over_ptr;
+       size_t carried_over_len, carried_over_count;
+       const char *cur_ptr = mbi_cur_ptr (iter);
+-      int cur_len = mb_len (mbi_cur (iter));
+-      int replen;
++      size_t cur_len = mb_len (mbi_cur (iter));
++      size_t replen;
+       int delim = 0;
+       int rc;
+ 
+@@ -1754,7 +1754,7 @@ clean_manpage (char *manpage)
+        mbi_advance (iter))
+     {
+       const char *cur_ptr = mbi_cur_ptr (iter);
+-      int cur_len = mb_len (mbi_cur (iter));
++      size_t cur_len = mb_len (mbi_cur (iter));
+ 
+       if (cur_len == 1)
+ 	{
+@@ -1831,7 +1831,7 @@ window_line_map_init (WINDOW *win)
+  */
+ int
+ window_scan_line (WINDOW *win, int line, int phys,
+-		  void (*fun) (void *closure, long cpos, int replen),
++		  void (*fun) (void *closure, long cpos, size_t replen),
+ 		  void *closure)
+ {
+   mbi_iterator_t iter;
+@@ -1852,8 +1852,8 @@ window_scan_line (WINDOW *win, int line,
+        mbi_advance (iter))
+     {
+       const char *cur_ptr = mbi_cur_ptr (iter);
+-      int cur_len = mb_len (mbi_cur (iter));
+-      int replen;
++      size_t cur_len = mb_len (mbi_cur (iter));
++      size_t replen;
+ 
+       if (cur_ptr >= endp)
+ 	break;
+@@ -1903,7 +1903,7 @@ window_scan_line (WINDOW *win, int line,
+ }
+ 
+ static void
+-add_line_map (void *closure, long cpos, int replen)
++add_line_map (void *closure, long cpos, size_t replen)
+ {
+   WINDOW *win = closure;
+ 
