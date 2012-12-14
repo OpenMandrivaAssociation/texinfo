@@ -96,7 +96,7 @@ fi
 if [ $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
-	     LESSOPEN="|/usr/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1 less "$3" | grep -q -e INFO-DIR-SECTION && /sbin/install-info "$3" --dir=%{_infodir}/dir --remove
+	    LESSOPEN="|/usr/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1 less "$3" | grep -q -e INFO-DIR-SECTION && /sbin/install-info "$3" --dir=%{_infodir}/dir --remove
 	fi
 	shift
     done
