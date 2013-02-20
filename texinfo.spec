@@ -72,11 +72,6 @@ touch %{buildroot}%{_infodir}/dir
 
 %find_lang %{name} --all-name
 
-%pre -n info
-if [ -f %{_sysconfdir}/info-dir -a -L %{_infodir}/dir ]; then
-    mv %{_sysconfdir}/info-dir %{_infodir}/dir 
-fi
-
 %triggerin -n info -- %{_infodir}/*.info*, %{_infodir}/texinfo.*
 if [ $1 -eq 0 -o $2 -eq 0 ]; then
     while [ -n "$3" ]; do
