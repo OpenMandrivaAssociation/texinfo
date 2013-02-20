@@ -18,9 +18,8 @@ Patch200:	texinfo-4.13-mb_modeline.patch
 Requires:	texlive-collection-texinfo
 BuildRequires:	texlive-collection-texinfo
 %endif
-BuildRequires:	ncurses-devel
+BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	help2man
-BuildRequires:	spec-helper >= 0.31.15
 
 %description
 Texinfo is a documentation system that can produce both online information
