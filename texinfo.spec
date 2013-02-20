@@ -1,21 +1,16 @@
 %bcond_with	bootstrap
 
 Name:		texinfo
-Version:	4.13a
-Release:	12
+Version:	5.0
+Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
 URL:		http://www.gnu.org/software/texinfo/
-Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.lzma
+Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch1:		texinfo-3.12h-fix.patch
-Patch2:		texinfo-4.13-test.patch
-Patch3:		texinfo-4.13-fix-crash-used-parallel.patch
 Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
-Patch108:	texinfo-4.13-xz.patch
-# backported from cvs
-Patch109:	texinfo-4.13-use-size_t-for-len.patch
 # Local fixes submitted upstream
 Patch200:	texinfo-4.13-mb_modeline.patch
 # (anssi 01/2008) for make check:
@@ -57,7 +52,7 @@ You should install info, because GNU's texinfo documentation is a valuable
 source of information about the software on your system.
 
 %prep
-%setup -qn %{name}-4.13
+%setup -q
 %apply_patches
 
 %build
@@ -75,7 +70,7 @@ mkdir -p %{buildroot}/sbin
 mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin
 touch %{buildroot}%{_infodir}/dir
 
-%find_lang %{name}
+%find_lang %{name} --all-name
 
 %pre -n info
 if [ -f %{_sysconfdir}/info-dir -a -L %{_infodir}/dir ]; then
@@ -103,9 +98,11 @@ if [ $2 -eq 0 ]; then
 fi
 
 %files -f %{name}.lang
-%doc AUTHORS INTRODUCTION NEWS README TODO
+%doc AUTHORS NEWS README TODO
 %{_bindir}/makeinfo
+%{_bindir}/pod2texi
 %{_bindir}/texindex
+%{_bindir}/texi2any
 %{_bindir}/texi2dvi
 %{_bindir}/texi2pdf
 %{_bindir}/pdftexi2dvi
@@ -113,6 +110,8 @@ fi
 %{_infodir}/texinfo*
 %{_mandir}/man1/makeinfo.1*
 %{_mandir}/man1/pdftexi2dvi.1*
+%{_mandir}/man1/pod2texi.1*
+%{_mandir}/man1/texi2any.1*
 %{_mandir}/man1/texi2dvi.1*
 %{_mandir}/man1/texi2pdf.1*
 %{_mandir}/man1/texindex.1*
