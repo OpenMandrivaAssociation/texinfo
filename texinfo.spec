@@ -101,12 +101,12 @@ fi
 %files -f %{name}.lang
 %doc AUTHORS NEWS README TODO
 %{_bindir}/makeinfo
+%{_bindir}/pdftexi2dvi
 %{_bindir}/pod2texi
 %{_bindir}/texindex
 %{_bindir}/texi2any
 %{_bindir}/texi2dvi
 %{_bindir}/texi2pdf
-%{_bindir}/pdftexi2dvi
 %{_infodir}/info-stnd.info*
 %{_infodir}/texinfo*
 %{_mandir}/man1/makeinfo.1*
