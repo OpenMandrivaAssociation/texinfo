@@ -38,9 +38,10 @@ going to write documentation for the GNU Project.
 %package -n	info
 Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
 Group:		System/Base
+Requires(pre):	coreutils
+Requires:	less
 Requires(pre):	xz
 Requires:	xz
-Requires(pre):	coreutils
 %rename		info-install
 
 %description -n	info
