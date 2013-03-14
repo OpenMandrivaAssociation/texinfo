@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   texinfo-5.0.tar.xz: add23a322077067bee48e725689f22224608a761
+sources:
+  texinfo-5.1.tar.xz: ed5aa2b93910dde4eacd5d649329a49db701878c
