@@ -2,7 +2,7 @@
 
 Name:		texinfo
 Version:	5.1
-Release:	1
+Release:	2
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -38,6 +38,8 @@ going to write documentation for the GNU Project.
 Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
 Group:		System/Base
 Requires(pre):	coreutils
+Requires(pre):	less 
+Requires(pre):	grep
 Requires:	less
 Requires(pre):	xz
 Requires:	xz
