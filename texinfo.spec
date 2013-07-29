@@ -2,7 +2,7 @@
 
 Name:		texinfo
 Version:	5.1
-Release:	2
+Release:	3
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -75,7 +75,7 @@ touch %{buildroot}%{_infodir}/dir
 %find_lang %{name} --all-name
 
 %triggerin -n info -- %{_infodir}/*.info*, %{_infodir}/texinfo.*
-if [ $1 -eq 0 -o $2 -eq 0 ]; then
+if [ $1 -eq 1 -o $2 -eq 1 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
 	    LESSOPEN="|/usr/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1 less "$3" | grep -q -e INFO-DIR-SECTION && /sbin/install-info "$3" --dir=%{_infodir}/dir
