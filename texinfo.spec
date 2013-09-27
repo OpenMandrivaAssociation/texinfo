@@ -1,8 +1,8 @@
 %bcond_with	bootstrap
 
 Name:		texinfo
-Version:	5.1
-Release:	3
+Version:	5.2
+Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
