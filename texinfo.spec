@@ -2,7 +2,7 @@
 
 Name:		texinfo
 Version:	5.2
-Release:	7
+Release:	8
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -58,7 +58,7 @@ source of information about the software on your system.
 %apply_patches
 
 %build
-%configure2_5x	--disable-rpath
+%configure	--disable-rpath
 %make 
 %make -C util
 
