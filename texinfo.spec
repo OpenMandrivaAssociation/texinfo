@@ -18,6 +18,7 @@ BuildRequires:	texlive-collection-texinfo
 %endif
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	help2man
+BuildRequires:	perl-devel
 
 %description
 Texinfo is a documentation system that can produce both online information
