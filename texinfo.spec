@@ -1,7 +1,7 @@
 %bcond_with	bootstrap
 
 Name:		texinfo
-Version:	6.3
+Version:	6.4
 Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
@@ -10,6 +10,7 @@ URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch1:		texinfo-3.12h-fix.patch
+Patch2:		texinfo-6.4-clang-5.0.patch
 Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
@@ -115,6 +116,7 @@ fi
 %{_datadir}/texinfo
 %dir %{_libdir}/texinfo
 %{_libdir}/texinfo/XSParagraph.so
+%{_libdir}/texinfo/MiscXS.so
 
 %files -n info
 /sbin/install-info
