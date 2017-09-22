@@ -1,5 +1,3 @@
-removed_sources:
-  texinfo-5.0.tar.xz: add23a322077067bee48e725689f22224608a761
-  texinfo-5.1.tar.xz: ed5aa2b93910dde4eacd5d649329a49db701878c
 sources:
-  texinfo-5.2.tar.xz: fbbc35c5857d11d1164c8445c78b66ad6d472072
+  texinfo-6.3.tar.xz: 64568f2791d1309aaccc22e63758458fd249ec8b
+  texinfo-6.4.tar.xz: 0812ffd078fc1f3b7600d43eec25ba1bddd4d4bd
