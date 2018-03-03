@@ -1,7 +1,7 @@
-%bcond_with	bootstrap
+%bcond_with bootstrap
 
 Name:		texinfo
-Version:	6.4
+Version:	6.5
 Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
@@ -58,8 +58,8 @@ source of information about the software on your system.
 %apply_patches
 
 %build
-%configure	--disable-rpath
-%make 
+%configure
+%make
 %make -C util
 
 %check
