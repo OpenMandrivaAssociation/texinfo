@@ -52,7 +52,7 @@ source of information about the software on your system.
 
 %prep
 %setup -q
-%aautopatch -p1
+%autopatch -p1
 
 %build
 %configure
