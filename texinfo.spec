@@ -10,7 +10,6 @@ URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch1:		texinfo-3.12h-fix.patch
-Patch2:		texinfo-6.4-clang-5.0.patch
 Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
@@ -37,11 +36,9 @@ going to write documentation for the GNU Project.
 %package -n	info
 Summary:	A stand-alone TTY-based reader for GNU texinfo documentation
 Group:		System/Base
-Requires(pre):	coreutils
-Requires(pre):	less 
-Requires(pre):	grep
+Requires:	coreutils
+Requires:	grep
 Requires:	less
-Requires(pre):	xz
 Requires:	xz
 %rename		info-install
 
@@ -55,11 +52,11 @@ source of information about the software on your system.
 
 %prep
 %setup -q
-%apply_patches
+%aautopatch -p1
 
 %build
 %configure
-%make
+%make_build
 %make -C util
 
 %check
@@ -67,14 +64,14 @@ source of information about the software on your system.
 make check
 
 %install
-%makeinstall_std
+%make_install
 mkdir -p %{buildroot}/sbin
 mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin
 touch %{buildroot}%{_infodir}/dir
 
 %find_lang %{name} --all-name
 
-%triggerin -n info -- %{_infodir}/*.info*, %{_infodir}/texinfo.*
+%transfiletriggerin -n info -- %{_infodir}/*.info* %{_infodir}/texinfo.*
 if [ $1 -eq 1 -o $2 -eq 1 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
@@ -84,7 +81,7 @@ if [ $1 -eq 1 -o $2 -eq 1 ]; then
     done
 fi
 
-%triggerun -n info -- %{_infodir}/*.info*, %{_infodir}/texinfo.*
+%transfiletriggerun -n info -- %{_infodir}/*.info* %{_infodir}/texinfo.*
 if [ $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
