@@ -1,4 +1,4 @@
-%bcond_with bootstrap
+%bcond_without bootstrap
 %global optflags %{optflags} -rtlib=compiler-rt
 
 Name:		texinfo
