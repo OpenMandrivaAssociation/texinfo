@@ -1,4 +1,5 @@
 %bcond_with bootstrap
+%global optflags %{optflags} -rtlib=compiler-rt
 
 Name:		texinfo
 Version:	6.5
@@ -10,6 +11,7 @@ URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch1:		texinfo-3.12h-fix.patch
+Patch2:		texinfo-6.5-clang.patch
 Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
@@ -51,8 +53,7 @@ You should install info, because GNU's texinfo documentation is a valuable
 source of information about the software on your system.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 %configure
