@@ -113,9 +113,11 @@ fi
 %{_mandir}/man1/texindex.1*
 %{_mandir}/man5/texinfo.5*   
 %{_datadir}/texinfo
+%ifnarch %armx
 %dir %{_libdir}/texinfo
 %{_libdir}/texinfo/XSParagraph.so
 %{_libdir}/texinfo/MiscXS.so
+%endif
 
 %files -n info
 /sbin/install-info
