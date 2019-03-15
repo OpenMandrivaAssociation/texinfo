@@ -1,5 +1,5 @@
 %bcond_without bootstrap
-ifnarch riscv64
+%ifnarch riscv64
 %global optflags %{optflags} -rtlib=compiler-rt
 %endif
 
