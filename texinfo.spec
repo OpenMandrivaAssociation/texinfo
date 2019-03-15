@@ -1,5 +1,7 @@
 %bcond_without bootstrap
+ifnarch riscv64
 %global optflags %{optflags} -rtlib=compiler-rt
+%endif
 
 Name:		texinfo
 Version:	6.5
