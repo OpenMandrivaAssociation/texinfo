@@ -4,8 +4,8 @@
 %endif
 
 Name:		texinfo
-Version:	6.5
-Release:	3
+Version:	6.6
+Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -117,6 +117,7 @@ fi
 %{_datadir}/texinfo
 %ifnarch %armx
 %dir %{_libdir}/texinfo
+%{_libdir}/texinfo/Parsetexi.so
 %{_libdir}/texinfo/XSParagraph.so
 %{_libdir}/texinfo/MiscXS.so
 %endif
