@@ -24,6 +24,40 @@ BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	help2man
 BuildRequires:	perl-devel
 BuildRequires:  perl-Storable	
+# Not detected by the dependency generator because these perl modules
+# go to %{_datadir}/texinfo rather than a default perl directory
+Provides:	perl(Texinfo::Common)
+Provides:	perl(Texinfo::Convert)
+Provides:	perl(Texinfo::Convert::Converter)
+Provides:	perl(Texinfo::Convert::DocBook)
+Provides:	perl(Texinfo::Convert::HTML)
+Provides:	perl(Texinfo::Convert::Info)
+Provides:	perl(Texinfo::Convert::IXIN)
+Provides:	perl(Texinfo::Convert::IXINSXML)
+Provides:	perl(Texinfo::Convert::Line)
+Provides:	perl(Texinfo::Convert::NodeNameNormalization)
+Provides:	perl(Texinfo::Convert::ParagraphNonXS)
+Provides:	perl(Texinfo::Convert::Paragraph)
+Provides:	perl(Texinfo::Convert::PlainTexinfo)
+Provides:	perl(Texinfo::Convert::Plaintext)
+Provides:	perl(Texinfo::Convert::Texinfo)
+Provides:	perl(Texinfo::Convert::TexinfoSXML)
+Provides:	perl(Texinfo::Convert::TexinfoXML)
+Provides:	perl(Texinfo::Convert::TextContent)
+Provides:	perl(Texinfo::Convert::Text)
+Provides:	perl(Texinfo::Convert::UnFilled)
+Provides:	perl(Texinfo::Convert::Unicode)
+Provides:	perl(Texinfo::Convert::XSParagraph)
+Provides:	perl(Texinfo::Convert::XSParagraph::TestXS)
+Provides:	perl(Texinfo::Documentlanguages)
+Provides:	perl(Texinfo::Encoding)
+Provides:	perl(Texinfo::MiscXS)
+Provides:	perl(Texinfo::ModulePath)
+Provides:	perl(Texinfo::Parser)
+Provides:	perl(Texinfo::Report)
+Provides:	perl(Texinfo::Structuring)
+Provides:	perl(Texinfo::Transformations)
+Provides:	perl(Texinfo::XSLoader)
 
 %description
 Texinfo is a documentation system that can produce both online information
