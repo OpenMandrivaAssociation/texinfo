@@ -5,7 +5,7 @@
 
 Name:		texinfo
 Version:	6.6
-Release:	2
+Release:	3
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
