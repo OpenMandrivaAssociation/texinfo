@@ -5,7 +5,7 @@
 
 Name:		texinfo
 Version:	6.6
-Release:	3
+Release:	4
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -24,7 +24,7 @@ BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	help2man
 BuildRequires:	perl-devel
 BuildRequires:	perl-Storable
-Requires:	tex(tex)
+Requires:	texlive-tex.bin
 # Not detected by the dependency generator because these perl modules
 # go to %{_datadir}/texinfo rather than a default perl directory
 Provides:	perl(Texinfo::Common)
