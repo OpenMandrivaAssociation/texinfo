@@ -24,7 +24,7 @@ BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	help2man
 BuildRequires:	perl-devel
 BuildRequires:	perl-Storable
-Requires:	tex
+Requires:	tex(tex)
 # Not detected by the dependency generator because these perl modules
 # go to %{_datadir}/texinfo rather than a default perl directory
 Provides:	perl(Texinfo::Common)
