@@ -5,16 +5,17 @@
 
 Name:		texinfo
 Version:	6.7
-Release:	1
+Release:	2
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
 URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
-Patch1:		texinfo-3.12h-fix.patch
-Patch2:		texinfo-6.5-clang.patch
-Patch107:	texinfo-4.13-vikeys-segfault-fix.patch
+Patch0:		texinfo-3.12h-fix.patch
+Patch1:		texinfo-6.5-clang.patch
+Patch2:		texinfo-4.13-vikeys-segfault-fix.patch
+Patch3:		https://src.fedoraproject.org/rpms/texinfo/raw/master/f/texinfo-6.5-covscan-fixes.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
 Requires:	texlive-collection-texinfo
@@ -27,6 +28,7 @@ BuildRequires:	perl-Storable
 Requires:	texlive-tex.bin
 # Not detected by the dependency generator because these perl modules
 # go to %{_datadir}/texinfo rather than a default perl directory
+# (tpg) why not use: global __provides_exclude ^perl\\(.*Texinfo.*\\)$ global __requires_exclude ^perl\\(.*Texinfo.*\\)$ ?
 Provides:	perl(Texinfo::Common)
 Provides:	perl(Texinfo::Convert)
 Provides:	perl(Texinfo::Convert::Converter)
@@ -55,6 +57,7 @@ Provides:	perl(Texinfo::Encoding)
 Provides:	perl(Texinfo::MiscXS)
 Provides:	perl(Texinfo::ModulePath)
 Provides:	perl(Texinfo::Parser)
+Provides:	perl(Texinfo::ParserNonXS)
 Provides:	perl(Texinfo::Report)
 Provides:	perl(Texinfo::Structuring)
 Provides:	perl(Texinfo::Transformations)
@@ -82,7 +85,7 @@ Requires:	less
 Requires:	xz
 %rename		info-install
 
-%description -n	info
+%description -n info
 The GNU project uses the texinfo file format for much of its
 documentation. The info package provides a standalone TTY-based browser
 program for viewing texinfo files.
