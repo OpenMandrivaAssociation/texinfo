@@ -13,7 +13,7 @@ URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch0:		texinfo-3.12h-fix.patch
-%ifarch %{riscv}
+%ifnarch %{riscv}
 Patch1:		texinfo-6.5-clang.patch
 %endif
 Patch2:		texinfo-4.13-vikeys-segfault-fix.patch
