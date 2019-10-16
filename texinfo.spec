@@ -15,7 +15,7 @@ Source2:	%{name}.rpmlintrc
 Patch0:		texinfo-3.12h-fix.patch
 Patch1:		texinfo-6.5-clang.patch
 Patch2:		texinfo-4.13-vikeys-segfault-fix.patch
-Patch3:		https://src.fedoraproject.org/rpms/texinfo/raw/master/f/texinfo-6.5-covscan-fixes.patch
+#Patch3:		https://src.fedoraproject.org/rpms/texinfo/raw/master/f/texinfo-6.5-covscan-fixes.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
 Requires:	texlive-collection-texinfo
