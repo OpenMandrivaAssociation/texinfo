@@ -5,7 +5,7 @@
 
 Name:		texinfo
 Version:	6.7
-Release:	2
+Release:	3
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -18,6 +18,7 @@ Patch1:		texinfo-6.5-clang.patch
 %endif
 Patch2:		texinfo-4.13-vikeys-segfault-fix.patch
 #Patch3:		https://src.fedoraproject.org/rpms/texinfo/raw/master/f/texinfo-6.5-covscan-fixes.patch
+Patch4:		texinfo-6.7-zstd-compression.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
 Requires:	texlive-collection-texinfo
