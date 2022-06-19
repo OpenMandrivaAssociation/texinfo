@@ -4,8 +4,8 @@
 %endif
 
 Name:		texinfo
-Version:	6.7
-Release:	4
+Version:	6.8
+Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -13,9 +13,6 @@ URL:		http://www.gnu.org/software/texinfo/
 Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch0:		texinfo-3.12h-fix.patch
-%ifnarch %{riscv}
-Patch1:		texinfo-6.5-clang.patch
-%endif
 Patch2:		texinfo-4.13-vikeys-segfault-fix.patch
 #Patch3:		https://src.fedoraproject.org/rpms/texinfo/raw/master/f/texinfo-6.5-covscan-fixes.patch
 Patch4:		texinfo-6.7-zstd-compression.patch
@@ -110,8 +107,6 @@ make check
 
 %install
 %make_install
-mkdir -p %{buildroot}/sbin
-mv %{buildroot}%{_bindir}/install-info %{buildroot}/sbin
 touch %{buildroot}%{_infodir}/dir
 
 %find_lang %{name} --all-name
@@ -120,7 +115,7 @@ touch %{buildroot}%{_infodir}/dir
 if [ $1 -eq 1 -o $2 -eq 1 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
-	    LESSOPEN="|/usr/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1 less "$3" | grep -q -e INFO-DIR-SECTION && /sbin/install-info "$3" --dir=%{_infodir}/dir
+	    LESSOPEN="|/usr/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1 less "$3" | grep -q -e INFO-DIR-SECTION && %{_bindir}/install-info "$3" --dir=%{_infodir}/dir
 	fi
 	shift
     done
@@ -130,7 +125,7 @@ fi
 if [ $2 -eq 0 ]; then
     while [ -n "$3" ]; do
 	if [ -f "$3" ]; then
-	    LESSOPEN="|/usr/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1 less "$3" | grep -q -e INFO-DIR-SECTION && /sbin/install-info "$3" --dir=%{_infodir}/dir --remove
+	    LESSOPEN="|/usr/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1 less "$3" | grep -q -e INFO-DIR-SECTION && %{_bindir}/install-info "$3" --dir=%{_infodir}/dir --remove
 	fi
 	shift
     done
@@ -162,7 +157,7 @@ fi
 %{_libdir}/texinfo/MiscXS.so
 
 %files -n info
-/sbin/install-info
+%{_bindir}/install-info
 %{_bindir}/info
 %ghost %{_infodir}/dir
 %{_mandir}/man1/info.1*
