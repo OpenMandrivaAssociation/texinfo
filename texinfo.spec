@@ -21,6 +21,8 @@ Patch4:		texinfo-6.7-zstd-compression.patch
 Requires:	texlive-collection-texinfo
 BuildRequires:	texlive-collection-texinfo
 %endif
+# So configure sees iconv() works
+BuildRequires:	locales-extra-charsets
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	help2man
 BuildRequires:	perl-devel
