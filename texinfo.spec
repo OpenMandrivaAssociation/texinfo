@@ -4,7 +4,7 @@
 %endif
 
 Name:		texinfo
-Version:	6.8
+Version:	7.0
 Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
@@ -14,7 +14,7 @@ Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch0:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-vikeys-segfault-fix.patch
-#Patch3:		https://src.fedoraproject.org/rpms/texinfo/raw/master/f/texinfo-6.5-covscan-fixes.patch
+Patch3:		texinfo-7.0-clang.patch
 Patch4:		texinfo-6.7-zstd-compression.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
@@ -142,6 +142,7 @@ fi
 %{_bindir}/texi2pdf
 %{_infodir}/info-stnd.info*
 %{_infodir}/texinfo*
+%{_infodir}/texi2any*
 %{_mandir}/man1/makeinfo.1*
 %{_mandir}/man1/pdftexi2dvi.1*
 %{_mandir}/man1/pod2texi.1*
