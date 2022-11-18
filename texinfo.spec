@@ -5,7 +5,7 @@
 
 Name:		texinfo
 Version:	7.0
-Release:	1
+Release:	2
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -28,6 +28,7 @@ BuildRequires:	help2man
 BuildRequires:	perl-devel
 BuildRequires:	perl-Storable
 Requires:	texlive-tex.bin
+Requires:	texlive-dehpyh
 # Not detected by the dependency generator because these perl modules
 # go to %{_datadir}/texinfo rather than a default perl directory
 # (tpg) why not use: global __provides_exclude ^perl\\(.*Texinfo.*\\)$ global __requires_exclude ^perl\\(.*Texinfo.*\\)$ ?
