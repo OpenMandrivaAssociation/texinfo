@@ -4,13 +4,13 @@
 %endif
 
 Name:		texinfo
-Version:	7.0
-Release:	2
+Version:	7.0.1
+Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
-URL:		http://www.gnu.org/software/texinfo/
-Source0:	ftp://ftp.gnu.org/pub/gnu/texinfo/%{name}-%{version}.tar.xz
+URL:		https://www.gnu.org/software/texinfo/
+Source0:	https://ftp.gnu.org/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch0:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-vikeys-segfault-fix.patch
