@@ -4,7 +4,7 @@
 %endif
 
 Name:		texinfo
-Version:	7.0.1
+Version:	7.0.2
 Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
