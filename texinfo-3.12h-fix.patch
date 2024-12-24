@@ -1,6 +1,7 @@
---- ./install-info/install-info.c.orig	Thu May 13 11:58:19 1999
-+++ ./install-info/install-info.c	Thu May 13 11:59:44 1999
-@@ -629,7 +629,7 @@ readfile (filename, sizep, create_callba
+diff -up texinfo-7.2/install-info/install-info.c.1~ texinfo-7.2/install-info/install-info.c
+--- texinfo-7.2/install-info/install-info.c.1~	2024-12-24 04:50:33.588726374 +0100
++++ texinfo-7.2/install-info/install-info.c	2024-12-24 16:24:48.024534711 +0100
+@@ -902,7 +902,7 @@ readfile (char *filename, int *sizep,
          break;
  
        filled += nread;
@@ -8,4 +9,4 @@
 +      if (data_size - filled < 8192)
          {
            data_size += 65536;
-           data = xrealloc (data, data_size);
+           data = xrealloc (data, data_size + 1);

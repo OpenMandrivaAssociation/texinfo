@@ -4,8 +4,8 @@
 %endif
 
 Name:		texinfo
-Version:	7.0.3
-Release:	3
+Version:	7.2
+Release:	1
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -14,7 +14,6 @@ Source0:	https://ftp.gnu.org/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch0:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-vikeys-segfault-fix.patch
-Patch3:		texinfo-7.0-clang.patch
 Patch4:		texinfo-6.7-zstd-compression.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
@@ -157,10 +156,19 @@ fi
 %{_mandir}/man1/texindex.1*
 %{_mandir}/man5/texinfo.5*
 %{_datadir}/texinfo
-%dir %{_libdir}/texinfo
-%{_libdir}/texinfo/Parsetexi.so
-%{_libdir}/texinfo/XSParagraph.so
-%{_libdir}/texinfo/MiscXS.so
+%dir %{_libdir}/texi2any
+%{_libdir}/texi2any/ConvertXS.so
+%{_libdir}/texi2any/DocumentXS.so
+%{_libdir}/texi2any/IndicesXS.so
+%{_libdir}/texi2any/MiscXS.so
+%{_libdir}/texi2any/Parsetexi.so
+%{_libdir}/texi2any/StructuringTransfoXS.so
+%{_libdir}/texi2any/XSParagraph.so
+%{_libdir}/texi2any/libtexinfo-convert.so*
+%{_libdir}/texi2any/libtexinfo-convertxs.so*
+%{_libdir}/texi2any/libtexinfo.so*
+%{_libdir}/texi2any/libtexinfoxs.so*
+%{_datadir}/texi2any
 
 %files -n info
 %{_bindir}/install-info
