@@ -18,6 +18,11 @@ Patch4:		texinfo-6.7-zstd-compression.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
 Requires:	texlive-collection-texinfo
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	texlive-collection-texinfo
 %endif
 # So configure sees iconv() works
