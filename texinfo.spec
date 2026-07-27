@@ -5,7 +5,7 @@
 
 Name:		texinfo
 Version:	7.2
-Release:	1
+Release:	2
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -15,6 +15,11 @@ Source2:	%{name}.rpmlintrc
 Patch0:		texinfo-3.12h-fix.patch
 Patch2:		texinfo-4.13-vikeys-segfault-fix.patch
 Patch4:		texinfo-6.7-zstd-compression.patch
+# Perl 5.42+ warns on "Possible precedence problem between ! and string eq"
+# for constructs like "! $str eq ''". Rewrite as "$str ne ''" (upstream
+# fixed some sites in 7.2; remaining ones were fixed later and are needed
+# for clean operation with Perl 5.42/5.44).
+Patch5:		texinfo-7.2-perl-precedence.patch
 # (anssi 01/2008) for make check:
 %if !%{with bootstrap}
 Requires:	texlive-collection-texinfo
