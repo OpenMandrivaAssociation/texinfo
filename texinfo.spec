@@ -5,7 +5,7 @@
 
 Name:		texinfo
 Version:	7.3
-Release:	1
+Release:	2
 Summary:	Tools needed to create Texinfo format documentation files
 License:	GPLv3+
 Group:		Publishing
@@ -13,14 +13,17 @@ URL:		https://www.gnu.org/software/texinfo/
 Source0:	https://ftp.gnu.org/gnu/texinfo/%{name}-%{version}.tar.xz
 Source2:	%{name}.rpmlintrc
 Patch0:		texinfo-3.12h-fix.patch
-# (anssi 01/2008) for make check:
-%if !%{with bootstrap}
-Requires:	texlive-collection-texinfo
+# Always needed: %%configure refreshes config.guess/sub and may re-run
+# autotools for each configure.ac (top-level, tta, CheckXS).
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gnu-config
 BuildRequires:	libtool-base
 BuildRequires:	slibtool
 BuildRequires:	make
+# (anssi 01/2008) for make check / full docs (optional when bootstrapping):
+%if !%{with bootstrap}
+Requires:	texlive-collection-texinfo
 BuildRequires:	texlive-collection-texinfo
 %endif
 # So configure sees iconv() works
@@ -34,7 +37,7 @@ Requires:	texlive-dehyph
 Requires:	texlive-texinfo
 Requires:	texlive-epsf
 # Not detected by the dependency generator because these perl modules
-# go to %{_datadir}/texi2any rather than a default perl directory
+# go to /usr/share/texi2any rather than a default perl directory
 Provides:	perl(Texinfo::Common)
 Provides:	perl(Texinfo::Convert::Converter)
 Provides:	perl(Texinfo::Convert::DocBook)
